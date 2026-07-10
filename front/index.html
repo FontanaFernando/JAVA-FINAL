@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechLab - Sistema de Gestión Táctica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>SISTEMA DE GESTIÓN - TECHLAB</h1>
+        <p>Panel Táctico Operacional de Inventario y Pedidos</p>
+    </header>
+
+    <div class="container">
+        <main class="panel">
+            <h2>📦 Catálogo de Productos Disponibles</h2>
+            <div id="productos-container" class="grid-productos">
+                </div>
+
+            <h2 class="mp-40">➕ Registrar Nuevo Producto (Admin)</h2>
+            <form id="producto-form" class="form-grid">
+                <div class="form-group">
+                    <label for="prod-nombre">Nombre del Producto</label>
+                    <input type="text" id="prod-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-tipo">Tipo de Producto</label>
+                    <select id="prod-tipo" onchange="alternarCamposEspecificos()">
+                        <option value="ELECTRONICA">Insumo Electrónico</option>
+                        <option value="EQUIPAMIENTO">Equipamiento Táctico</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="prod-precio">Precio ($)</label>
+                    <input type="number" step="0.01" id="prod-precio" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-stock">Stock Inicial</label>
+                    <input type="number" id="prod-stock" required>
+                </div>
+                <div class="form-group full-width" id="campo-protocolo">
+                    <label id="label-especifico" for="prod-especifico">Protocolo de Comunicación (ej: WiFi/LoRa)</label>
+                    <input type="text" id="prod-especifico">
+                </div>
+                <button type="button" onclick="crearProducto()" class="btn-success full-width">Guardar en Inventario MySQL</button>
+            </form>
+        </main>
+
+        <aside class="panel side-panel">
+            <h2>🛒 Carrito de Compras</h2>
+            <div id="carrito-items" class="cart-container">
+                <p class="text-center muted">El carrito está vacío.</p>
+            </div>
+            <div class="cart-total">Total: $<span id="cart-total-val">0.00</span></div>
+            <button onclick="realizarPedido()" class="btn-success">Realizar Pedido Especial</button>
+
+            <h2 class="mt-30">📋 Últimos Pedidos Procesados</h2>
+            <div id="historial-pedidos" class="history-container">
+                </div>
+        </aside>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
